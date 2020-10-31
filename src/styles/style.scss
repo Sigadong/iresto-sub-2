@@ -1,0 +1,233 @@
+@import 'responsive';
+
+/* Responsive Tablet */
+@media (min-width: 768px) {
+    .skip-link {
+        color: #f6f4e6;
+        display: inline;
+        font-size: 12px;
+        background-color: rgba(65, 154, 236, 0.5);
+        position: $position-absolute;
+        padding: 6px;
+        text-decoration: $text-decor;
+        top: -40px;
+        left: 0;
+        pointer-events: none;
+        cursor: default;
+        z-index: 10;
+        &:focus {
+            top: 0;
+        }
+    }
+
+    nav {
+        #hamburger {
+            display: none;
+        }
+        .logo {
+            margin: 0;
+        }
+        ul {
+        width: 40%;
+        flex-direction: row;
+        position: $position-relative;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 0;
+        height: 0;
+        z-index: 0;
+        transform: translateX(0);
+        opacity: 1;
+            li {
+                padding: 0 8px;
+                a {
+                    font-size: 1em;
+                    text-transform: capitalize;
+                }
+            }
+        }
+    }
+
+    .menu-toggle {
+        display: none;
+    }
+
+    .jumbotron .title {
+        width: 70%;
+        a {
+            width: 40%;
+            margin: 0 auto;
+        }
+        h1 {
+            font-size: 1.4em;
+        }
+        p {
+            font-size: 13px;
+        }
+    }
+
+    // Main content
+    #main-content {
+        .detail-menu {
+            .detail-card {
+                .detail-text {
+                    padding-left: 30px;
+                    padding-right: 10px;
+                    margin-top: 4px;
+                }
+                .detail-image {
+                    width: 85%;
+                    height: 320px;
+                    margin: 0 auto;
+                }
+            }
+            .reviews{
+                max-width: 90%;
+                .row {
+                    display: $display-flex;
+                    flex-direction: row;
+                    .column-label {
+                        width: 30%;
+                        margin-top: 6px;
+                    }
+                    .column-input {
+                        width: 70%;
+                        margin-top: 6px;
+                    }
+                }
+                .submit {
+                    #buttonAdd {
+                        width: 25%;
+                        margin-left: auto;
+                    }
+                }
+            }
+        }
+
+        .container-cards {
+            display: $display-flex;
+            flex-flow: row wrap;
+            padding: 20px 3%;
+            .cards {
+                width: 45%;
+                margin: 14px;
+                .item {
+                    padding-left: 18px;
+                    padding-right: 18px;
+                    h3 {
+                        font-size: 1em;
+                        margin-bottom: 4px;
+                    }
+                    .description {
+                        font-size: 13px;
+                    }
+                }
+            }
+            .city {
+                background-color: rgba(27, 48, 94, 0.67);
+                color: rgb(221, 218, 218);
+                font-weight: $fw500;
+                font-size: 0.8em;
+                width: 30%;
+                padding: 4px 4px 4px 12px;
+                margin-top: 6px;
+                position: $position-absolute;
+                border-radius: 0 1px 1px 0;
+                box-shadow: 0 1px 4px rgba(226, 226, 226, 0.596);
+            }
+            .alert-favorite {
+                width: 60%;
+            }
+        }
+
+        footer p {
+            font-size: 13px;
+        }
+    }
+}
+
+@media (min-width: 1024px) {
+    nav ul {
+        width: 35%;
+    }
+
+    .jumbotron .title {
+        top: 16%;
+        width: 60%;
+        a {
+            width: 30%;
+        }
+        h1 {
+            font-size: 1.5em;
+        }
+    }
+
+    #main-content .container-cards .cards {
+        width: 30%;
+        h2 {
+            font-size: 1.5em;
+        }
+        .item {
+            padding-left: 16px;
+            padding-right: 16px;
+            .rating {
+                font-size: 13px;
+            }
+            h3 {
+                font-size: 1.12em;
+                margin-bottom: 4px;
+            }
+            .description {
+                font-size: 14px;
+            }
+            .booked {
+                font-size: 14px;
+            }
+        }
+        .city {
+            background-color: rgba(27, 48, 94, 0.67);
+            color: rgb(221, 218, 218);
+            font-weight: $fw500;
+            font-size: 0.8em;
+        }
+    }
+
+    #main-content .detail-menu {
+        display: $display-flex;
+        flex-direction: $flex-direction;
+        .detail-card {
+            display: $display-flex;
+            flex-direction: row;
+            .detail-image {
+                width: 45%;
+                height: 370px;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .detail-text {
+                padding: 10px 0 5px 20px;
+                width: 55%;
+            }
+        }
+        .reviews{
+            max-width: 70%;
+            padding: 20px;
+            .row {
+                .column-label {
+                    width: 25%;
+                }
+                .column-input {
+                    width: 75%;
+                }
+            }
+            .submit #buttonAdd {
+                width: 15%;
+            }
+        }
+    }
+  
+
+}
+
