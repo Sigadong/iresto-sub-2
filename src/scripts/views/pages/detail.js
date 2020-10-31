@@ -1,6 +1,6 @@
 import UrlParser from '../../routes/url-parser';
 import RestaurantSource from '../../data/restaurant-source';
-import { createMenuDetailTemplate, createConsumerReviewsTemplate } from '../templates/template-creator';
+import { createMenuDetailTemplate, createConsumerReviewsTemplate, createCanNotAccessedTemplate } from '../templates/template-creator';
 import LikeButtonInitiator from '../../utils/like-button-initiator';
 
 const Detail = {
@@ -17,13 +17,18 @@ const Detail = {
         const detailMenu = await RestaurantSource.detailMenu(url.id);
         console.log(detailMenu);
         const detailMenuContainer = document.querySelector('#detail-menu');
-        detailMenuContainer.innerHTML = createMenuDetailTemplate(detailMenu);
-        detailMenuContainer.innerHTML += createConsumerReviewsTemplate(detailMenu);
 
+        if (detailMenu instanceof Object || detailMenu instanceof Array) {
+            detailMenuContainer.innerHTML = createMenuDetailTemplate(detailMenu);
+            detailMenuContainer.innerHTML += createConsumerReviewsTemplate(detailMenu);
+        } else {
+            detailMenuContainer.innerHTML = createCanNotAccessedTemplate();
+        }
         // document.addEventListener("DOMContentLoaded", () => {
         const buttonAddReview = document.querySelector('#buttonAdd');
         const nameConsumer = document.querySelector('#name-consumer');
         const reviewConsumer = document.querySelector('#review-consumer');
+        const reviews = document.querySelector('#reviews');
 
         buttonAddReview.addEventListener('click', () => {
             const dataReviewConsumer = {
@@ -31,12 +36,13 @@ const Detail = {
                 name: nameConsumer.value,
                 review: reviewConsumer.value,
             }
-            RestaurantSource.reviewMenu(dataReviewConsumer);
-            // console.log(inputan);
+            const resultResponse = RestaurantSource.reviewMenu(dataReviewConsumer);
+            if (resultResponse.error == false) {
+                reviews.innerHTML += createCanNotAccessedTemplate();
+            }
+            console.log(resultResponse);
+
         });
-        // detailMenuContainer.innerHTML = createMenuDetailTemplate(detailMenu);
-        // detailMenuContainer.innerHTML += createConsumerReviewsTemplate(detailMenu);
-        // });
 
 
         // const categories = detailMenu.categories;

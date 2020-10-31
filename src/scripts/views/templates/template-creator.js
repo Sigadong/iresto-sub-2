@@ -46,8 +46,8 @@ const createLikedButtonTemplate = () => `
     `;
 
 const createEmptyFavoriteTemplate = () => `
-    <div class="alert-favorite">
-        <h3 class="text-alert"><span>Heads up!</span> Empty your favorite. Please <a href="#/list-menu" aria-label="link navigasi">clik here..</></h3>
+    <div class="alert favorite">
+        <h3 class="text-alert text-heads"><span>Heads up!</span> Empty your favorite. Please <a href="#/list-menu" aria-label="link navigasi">clik here..</a></h3>
     </div>
     `;
 
@@ -58,8 +58,8 @@ const createPageNotFoundTemplate = () => `
     `;
 
 const createCanNotAccessedTemplate = () => `
-    <div class="cannotaccessed">
-        <h3>Uppss.. Can't accessed page</h3>
+    <div class="alert danger">
+        <h3 class="text-alert text-danger"><span>Uppss..</span> Can't accessed page, please check your connection</h3>
     </div>
     `;
 
@@ -87,13 +87,13 @@ const createConsumerReviewsTemplate = (detailMenu) => `
         </div>
         
       <h2 class="title-review"><i class="fa fa-users fa-lg" aria-hidden="true"></i> Consumer Reviews</h2> 
-      ${detailMenu.consumerReviews.map((names) =>
+      ${detailMenu.customerReviews.map((name) =>
     `<div class="row">
         <div class="column-label">
-            <label for="firstname"><i class="fa fa-user fa-lg" aria-hidden="true"></i> ${names.name}</label>
+            <label for="firstname"><i class="fa fa-user fa-lg" aria-hidden="true"></i> ${name.name}</label>
         </div>
         <div class="column-input">
-            <p>${detailMenu.consumerReviews.map((review) => review.review)}</p>
+            <p>${detailMenu.customerReviews.map((review) => review.review)}</p>
         </div>
       </div>
       <h2> </h2>`

@@ -1,29 +1,34 @@
 import API_ENDPOINT from '../globals/api-endpoint';
-import CONFIG from '../globals/config';
+import { fetchAPI, fetchAPIReview } from './fetchapi-restaurant';
 
 class RestaurantSource {
     static async listMenu() {
-        const response = await fetch(API_ENDPOINT.LIST_MENU);
-        const responseJson = await response.json();
-        return responseJson.restaurants;
+        try {
+            const responseJson = await fetchAPI(API_ENDPOINT.LIST_MENU);
+            return responseJson.restaurants;
+        } catch (error) {
+            console.log("There is an Error -> " + error);
+            return error;
+        }
     }
 
     static async detailMenu(id) {
-        const response = await fetch(API_ENDPOINT.DETAIL(id));
-        const responseJson = await response.json();
-        return responseJson.restaurant;
+        try {
+            const responseJson = await fetchAPI(API_ENDPOINT.DETAIL(id));
+            return responseJson.restaurant;
+        } catch (error) {
+            console.log("There is an Error -> " + error);
+            return error;
+        }
     }
 
     static async reviewMenu(reviewConsumer) {
-        const response = await fetch(API_ENDPOINT.REVIEW_MENU, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-Auth-Token': CONFIG.KEY,
-            },
-            body: JSON.stringify(reviewConsumer),
-        });
-        return response;
+        try {
+            const response = await fetchAPIReview(API_ENDPOINT.REVIEW_MENU, reviewConsumer);
+            return response;
+        } catch (error) {
+            return error;
+        }
     }
 
 }

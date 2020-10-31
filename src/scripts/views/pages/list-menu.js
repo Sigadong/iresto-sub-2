@@ -12,15 +12,15 @@ const ListMenu = {
     async afterRender() {
         const listItem = await RestaurantSource.listMenu();
         console.log(listItem);
-
         const listItemContainer = document.querySelector('#card-restaurants');
 
-        if (listItem == '') {
+        if (listItem instanceof Array) {
+            listItem.forEach((item) => {
+                listItemContainer.innerHTML += createListItemTemplate(item);
+            });
+        } else {
             listItemContainer.innerHTML += createCanNotAccessedTemplate();
         }
-        listItem.forEach((item) => {
-            listItemContainer.innerHTML += createListItemTemplate(item);
-        });
 
     },
 };

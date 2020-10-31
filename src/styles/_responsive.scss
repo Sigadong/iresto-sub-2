@@ -351,21 +351,31 @@ a:focus {
                 font-size: $fs12;
             }
         }
-        .alert-favorite{
+        .alert{
             width: 100%;
             padding: 12px;
-            margin: 20px auto;
-            background-color: rgba(129, 175, 133, 0.3);
+            margin: 20px auto;            
             border-radius: 4px;
             .text-alert {
-                color:rgba(48, 97, 51, 0.90);
                 font-size: 14px;
                 span {
                     font-weight: bold;
-                }
+                }                               
+            }
+        }
+        .alert.favorite {
+            background-color: rgba(129, 175, 133, 0.3);
+            .text-headsup {
+                color:rgba(48, 97, 51, 0.90);
                 a {
                     color: rgb(24, 143, 223);
-                }                
+                } 
+            }
+        }
+        .alert.danger {
+            background-color: rgba(240, 124, 124, 0.40);
+            .text-danger {
+                color:rgba(231, 122, 122, 0.95);                
             }
         }
     }

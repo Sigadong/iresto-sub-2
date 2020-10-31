@@ -12,7 +12,7 @@ const Like = {
     async afterRender() {
         const favoriteItems = await FavoriteiRestoIdb.getAllRestaurant();
         const favoriteItemContainer = document.querySelector('#card-restaurants');
-        if (favoriteItems < 1 || favoriteItems === null) {
+        if (favoriteItems < 1 || favoriteItems == null) {
             favoriteItemContainer.innerHTML += createEmptyFavoriteTemplate();
         } else {
             favoriteItems.forEach((item) => {
