@@ -1,5 +1,5 @@
 import RestaurantSource from '../../data/restaurant-source';
-import { createListItemTemplate, createCanNotAccessedTemplate } from '../templates/template-creator';
+import { createListItemTemplate, createCanNotAccessedTemplate, createIndicatorLoadingTemplate } from '../templates/template-creator';
 
 const ListMenu = {
     async render() {
@@ -10,16 +10,18 @@ const ListMenu = {
     },
 
     async afterRender() {
-        const listItem = await RestaurantSource.listMenu();
-        console.log(listItem);
         const listItemContainer = document.querySelector('#card-restaurants');
+        listItemContainer.innerHTML = createIndicatorLoadingTemplate();
+
+        const listItem = await RestaurantSource.listMenu();
 
         if (listItem instanceof Array) {
+            listItemContainer.innerHTML = '';
             listItem.forEach((item) => {
                 listItemContainer.innerHTML += createListItemTemplate(item);
             });
         } else {
-            listItemContainer.innerHTML += createCanNotAccessedTemplate();
+            listItemContainer.innerHTML = createCanNotAccessedTemplate();
         }
 
     },

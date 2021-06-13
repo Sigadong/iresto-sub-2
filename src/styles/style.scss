@@ -72,7 +72,7 @@
             .detail-card {
                 .detail-text {
                     padding-left: 30px;
-                    padding-right: 10px;
+                    padding-right: 30px;
                     margin-top: 4px;
                 }
                 .detail-image {
@@ -83,7 +83,7 @@
             }
             .reviews{
                 max-width: 90%;
-                .row {
+                .row-review {
                     display: $display-flex;
                     flex-direction: row;
                     .column-label {
@@ -135,7 +135,7 @@
                 border-radius: 0 1px 1px 0;
                 box-shadow: 0 1px 4px rgba(226, 226, 226, 0.596);
             }
-            .alert-favorite {
+            .alert {
                 width: 60%;
             }
         }
@@ -195,6 +195,7 @@
     #main-content .detail-menu {
         display: $display-flex;
         flex-direction: $flex-direction;
+        // justify-content: center;
         .detail-card {
             display: $display-flex;
             flex-direction: row;
@@ -207,14 +208,15 @@
                 }
             }
             .detail-text {
-                padding: 10px 0 5px 20px;
+                font-size: 1.1em;
+                padding: 10px 20px 5px 20px;
                 width: 55%;
             }
         }
         .reviews{
-            max-width: 70%;
-            padding: 20px;
-            .row {
+            max-width: 60%;
+            padding: 20px 20px 0px 20px;
+            .row-review {
                 .column-label {
                     width: 25%;
                 }

@@ -1,7 +1,10 @@
 import UrlParser from '../../routes/url-parser';
 import RestaurantSource from '../../data/restaurant-source';
-import { createMenuDetailTemplate, createConsumerReviewsTemplate, createCanNotAccessedTemplate } from '../templates/template-creator';
 import LikeButtonInitiator from '../../utils/like-button-initiator';
+import {
+    createMenuDetailTemplate, createCustomerReviewsTemplate,
+    createCanNotAccessedTemplate, createIndicatorLoadingTemplate,
+} from '../templates/template-creator';
 
 const Detail = {
     async render() {
@@ -13,43 +16,42 @@ const Detail = {
     },
 
     async afterRender() {
+        const detailMenuContainer = document.querySelector('#detail-menu');
+        detailMenuContainer.innerHTML += createIndicatorLoadingTemplate();
+
         const url = UrlParser.parseActiveUrlWithoutCombiner();
         const detailMenu = await RestaurantSource.detailMenu(url.id);
-        console.log(detailMenu);
-        const detailMenuContainer = document.querySelector('#detail-menu');
 
-        if (detailMenu instanceof Object || detailMenu instanceof Array) {
+        if (detailMenu instanceof Object) {
+            detailMenuContainer.innerHTML = '';
             detailMenuContainer.innerHTML = createMenuDetailTemplate(detailMenu);
-            detailMenuContainer.innerHTML += createConsumerReviewsTemplate(detailMenu);
+            detailMenuContainer.innerHTML += createCustomerReviewsTemplate(detailMenu);
         } else {
             detailMenuContainer.innerHTML = createCanNotAccessedTemplate();
         }
-        // document.addEventListener("DOMContentLoaded", () => {
+
         const buttonAddReview = document.querySelector('#buttonAdd');
-        const nameConsumer = document.querySelector('#name-consumer');
-        const reviewConsumer = document.querySelector('#review-consumer');
-        const reviews = document.querySelector('#reviews');
+        const nameCustomer = document.querySelector('#name-customer');
+        const reviewCustomer = document.querySelector('#review-customer');
 
-        buttonAddReview.addEventListener('click', () => {
-            const dataReviewConsumer = {
+        buttonAddReview.addEventListener('click', async () => {
+            const dataReviewCustomer = {
                 id: detailMenu.id,
-                name: nameConsumer.value,
-                review: reviewConsumer.value,
+                name: nameCustomer.value,
+                review: reviewCustomer.value,
             }
-            const resultResponse = RestaurantSource.reviewMenu(dataReviewConsumer);
-            if (resultResponse.error == false) {
-                reviews.innerHTML += createCanNotAccessedTemplate();
-            }
-            console.log(resultResponse);
+            const customerReviews = await RestaurantSource.reviewMenu(dataReviewCustomer);
 
+            if (customerReviews instanceof Object) {
+                detailMenuContainer.innerHTML = createMenuDetailTemplate(detailMenu);
+                detailMenuContainer.innerHTML += createCustomerReviewsTemplate(customerReviews);
+                nameCustomer.value = '';
+                reviewCustomer.value = '';
+            } else {
+                detailMenuContainer.innerHTML = '';
+                detailMenuContainer.innerHTML += createCanNotAccessedTemplate();
+            }
         });
-
-
-        // const categories = detailMenu.categories;
-        // const consumerReviews = detailMenu.consumerReviews;
-        // const drinks = detailMenu.menus.drinks;
-        // const foods = detailMenu.menus.foods;
-
 
         LikeButtonInitiator.init({
             likeButtonContainer: document.querySelector('#likeButtonContainer'),
@@ -70,9 +72,7 @@ const Detail = {
             },
         });
 
-
     },
-
 };
 
 export default Detail;

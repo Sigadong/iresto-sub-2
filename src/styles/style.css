@@ -41,7 +41,7 @@ nav #hamburger {
   outline: none;
   text-decoration: none;
   line-height: 44px;
-  padding-left: 8px;
+  padding-left: 5px;
 }
 
 nav .logo {
@@ -54,8 +54,8 @@ nav .logo a {
   min-width: 44px;
   line-height: 44px;
   font-family: "Kaushan Script", cursive;
-  font-size: 1.45em;
-  letter-spacing: 3px;
+  font-size: 1.65em;
+  letter-spacing: 2px;
   text-decoration: none;
 }
 
@@ -220,7 +220,7 @@ a:focus {
 }
 
 #main-content h2 .fa-list-alt, #main-content h2 .fa-user, #main-content h2 .fa-wpforms {
-  color: #e0cd20;
+  color: #eba819;
 }
 
 #main-content .reviews {
@@ -235,16 +235,16 @@ a:focus {
   margin-bottom: 6px;
 }
 
-#main-content .reviews .row .fa-user {
+#main-content .reviews .row-review .fa-user {
   color: #2257e9;
 }
 
-#main-content .reviews .row .column-label, #main-content .reviews .row .column-input, #main-content .reviews .row #buttonAdd {
+#main-content .reviews .row-review .column-label, #main-content .reviews .row-review .column-input, #main-content .reviews .row-review #buttonAdd {
   width: 100%;
   margin-top: 0;
 }
 
-#main-content .reviews .row input[type=text], #main-content .reviews .row textarea {
+#main-content .reviews .row-review input[type=text], #main-content .reviews .row-review textarea {
   width: 100%;
   padding: 6px;
   border: 1px solid #ccc;
@@ -252,17 +252,17 @@ a:focus {
   resize: vertical;
 }
 
-#main-content .reviews .row input[type=text]:focus, #main-content .reviews .row textarea:focus {
+#main-content .reviews .row-review input[type=text]:focus, #main-content .reviews .row-review textarea:focus {
   outline: 1px solid rgba(87, 178, 206, 0.9);
   background-color: #fcfcfc;
 }
 
-#main-content .reviews .row label {
+#main-content .reviews .row-review label {
   padding: 10px 10px 10px 0;
   display: inline-block;
 }
 
-#main-content .reviews .row #buttonAdd {
+#main-content .reviews .row-review #buttonAdd {
   color: white;
   text-align: center;
   padding: 10px 16px;
@@ -273,12 +273,38 @@ a:focus {
   border-radius: 5px;
   -webkit-transition-duration: 0.2s;
           transition-duration: 0.2s;
+  cursor: pointer;
 }
 
-#main-content .reviews .row #buttonAdd:hover {
+#main-content .reviews .row-review #buttonAdd:hover {
   background-color: #45a049;
   -webkit-box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.24), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
           box-shadow: 0 8px 10px 0 rgba(0, 0, 0, 0.24), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#main-content .reviews .review-customer {
+  border-bottom: 1px solid #eeeeee;
+}
+
+#main-content .reviews .review-customer .customer {
+  color: rgba(95, 95, 95, 0.8);
+}
+
+#main-content .reviews .review-customer .customer h4 {
+  font-weight: 600;
+}
+
+#main-content .reviews .review-customer .customer p {
+  text-indent: 3;
+  text-align: justify;
+  text-transform: capitalize;
+}
+
+#main-content .reviews .review-customer .customer .date-review {
+  font-size: 0.68rem;
+  font-weight: 300;
+  margin-top: 7px;
+  margin-right: 40%;
 }
 
 #main-content .detail-menu .detail-card {
@@ -306,13 +332,23 @@ a:focus {
 }
 
 #main-content .detail-menu .detail-card .detail-text {
-  padding-left: 10px;
-  padding-top: 5px;
+  padding: 5px 10px;
+}
+
+#main-content .detail-menu .detail-card .detail-text .fa-map-marker {
+  font-size: 22px;
+  color: #c00000;
 }
 
 #main-content .detail-menu .detail-card .detail-text .star-detail {
   font-size: 15px;
   margin-bottom: 3px;
+}
+
+#main-content .detail-menu .detail-card .detail-text .title-detail {
+  color: #171577;
+  font-weight: 600;
+  margin-bottom: 6px;
 }
 
 #main-content .detail-menu .detail-card .detail-text ul.ul-list {
@@ -398,28 +434,17 @@ a:focus {
 #main-content .container-cards .cards .description {
   font-size: 12px;
   color: rgba(21, 21, 21, 0.9);
-  letter-spacing: 0;
   text-align: justify;
-  text-indent: 1.7rem;
+  text-indent: 1.4rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 6;
+  -webkit-box-orient: vertical;
 }
 
 #main-content .container-cards .cards .booked {
   font-size: 12px;
-}
-
-#main-content .container-cards .alert {
-  width: 100%;
-  padding: 12px;
-  margin: 20px auto;
-  border-radius: 4px;
-}
-
-#main-content .container-cards .alert .text-alert {
-  font-size: 14px;
-}
-
-#main-content .container-cards .alert .text-alert span {
-  font-weight: bold;
 }
 
 #main-content .container-cards .alert.favorite {
@@ -440,6 +465,37 @@ a:focus {
 
 #main-content .container-cards .alert.danger .text-danger {
   color: rgba(231, 122, 122, 0.95);
+}
+
+#main-content .container-cards .alert.danger .text-danger .circled-x {
+  color: red;
+  font-size: 24px;
+}
+
+#main-content .container-cards .alert, #main-content .detail-menu .alert {
+  width: 100%;
+  padding: 14px;
+  margin: 22px auto;
+  border-radius: 4px;
+}
+
+#main-content .container-cards .alert .text-alert, #main-content .detail-menu .alert .text-alert {
+  font-size: 14px;
+}
+
+#main-content .container-cards .alert .text-alert span, #main-content .detail-menu .alert .text-alert span {
+  font-weight: bold;
+}
+
+#main-content .container-cards .alert.indicators, #main-content .detail-menu .alert.indicators {
+  text-align: center;
+  background-color: rgba(250, 250, 250, 0.7);
+  border: 1px solid rgba(240, 240, 240, 0.85);
+}
+
+#main-content .container-cards .alert.indicators .spinner, #main-content .detail-menu .alert.indicators .spinner {
+  width: 130px;
+  height: 130px;
 }
 
 footer {
@@ -553,7 +609,7 @@ footer p .i-logo {
   }
   #main-content .detail-menu .detail-card .detail-text {
     padding-left: 30px;
-    padding-right: 10px;
+    padding-right: 30px;
     margin-top: 4px;
   }
   #main-content .detail-menu .detail-card .detail-image {
@@ -564,7 +620,7 @@ footer p .i-logo {
   #main-content .detail-menu .reviews {
     max-width: 90%;
   }
-  #main-content .detail-menu .reviews .row {
+  #main-content .detail-menu .reviews .row-review {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -573,11 +629,11 @@ footer p .i-logo {
         -ms-flex-direction: row;
             flex-direction: row;
   }
-  #main-content .detail-menu .reviews .row .column-label {
+  #main-content .detail-menu .reviews .row-review .column-label {
     width: 30%;
     margin-top: 6px;
   }
-  #main-content .detail-menu .reviews .row .column-input {
+  #main-content .detail-menu .reviews .row-review .column-input {
     width: 70%;
     margin-top: 6px;
   }
@@ -623,7 +679,7 @@ footer p .i-logo {
     -webkit-box-shadow: 0 1px 4px rgba(226, 226, 226, 0.596);
             box-shadow: 0 1px 4px rgba(226, 226, 226, 0.596);
   }
-  #main-content .container-cards .alert-favorite {
+  #main-content .container-cards .alert {
     width: 60%;
   }
   #main-content footer p {
@@ -701,17 +757,17 @@ footer p .i-logo {
     height: 100%;
   }
   #main-content .detail-menu .detail-card .detail-text {
-    padding: 10px 0 5px 20px;
+    font-size: 1.1em;
+    padding: 10px 20px 5px 20px;
     width: 55%;
   }
   #main-content .detail-menu .reviews {
-    max-width: 70%;
-    padding: 20px;
+    max-width: 60%;
   }
-  #main-content .detail-menu .reviews .row .column-label {
+  #main-content .detail-menu .reviews .row-review .column-label {
     width: 25%;
   }
-  #main-content .detail-menu .reviews .row .column-input {
+  #main-content .detail-menu .reviews .row-review .column-input {
     width: 75%;
   }
   #main-content .detail-menu .reviews .submit #buttonAdd {

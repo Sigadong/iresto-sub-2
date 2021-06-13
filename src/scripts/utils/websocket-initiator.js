@@ -17,6 +17,10 @@ const WebSocketInitiator = {
             options: {
                 body: menuItem.overview,
                 image: `https://image.tmdb.org/t/p/w500/${menuItem.poster_path}`,
+                vibrate: [200, 70, 300, 150],
+                data: {
+                    dateOfArrival: Date.now(),
+                },
             },
         });
     },

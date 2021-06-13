@@ -7,7 +7,6 @@ class RestaurantSource {
             const responseJson = await fetchAPI(API_ENDPOINT.LIST_MENU);
             return responseJson.restaurants;
         } catch (error) {
-            console.log("There is an Error -> " + error);
             return error;
         }
     }
@@ -17,7 +16,6 @@ class RestaurantSource {
             const responseJson = await fetchAPI(API_ENDPOINT.DETAIL(id));
             return responseJson.restaurant;
         } catch (error) {
-            console.log("There is an Error -> " + error);
             return error;
         }
     }
