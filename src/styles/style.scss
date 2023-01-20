@@ -7,14 +7,17 @@
         display: inline;
         font-size: 12px;
         background-color: rgba(65, 154, 236, 0.5);
+        min-width: $min-width;
+        line-height: $line-height;
         position: $position-absolute;
-        padding: 6px;
+        padding: 0 8px;
         text-decoration: $text-decor;
         top: -40px;
         left: 0;
         pointer-events: none;
         cursor: default;
         z-index: 10;
+
         &:focus {
             top: 0;
         }
@@ -24,22 +27,30 @@
         #hamburger {
             display: none;
         }
+
         .logo {
             margin: 0;
+
+            a {
+                margin-left: 0;
+            }
         }
+
         ul {
-        width: 40%;
-        flex-direction: row;
-        position: $position-relative;
-        justify-content: space-evenly;
-        align-items: center;
-        padding: 0;
-        height: 0;
-        z-index: 0;
-        transform: translateX(0);
-        opacity: 1;
+            width: 40%;
+            flex-direction: row;
+            position: $position-relative;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 0;
+            height: 0;
+            z-index: 0;
+            transform: translateX(0);
+            opacity: 1;
+
             li {
                 padding: 0 8px;
+
                 a {
                     font-size: 1em;
                     text-transform: capitalize;
@@ -53,51 +64,73 @@
     }
 
     .jumbotron .title {
-        width: 70%;
+        top: 12%;
+
         a {
             width: 40%;
             margin: 0 auto;
         }
+
         h1 {
-            font-size: 1.4em;
+            font-size: 1.8em;
         }
+
         p {
-            font-size: 13px;
+            font-size: 1em;
         }
     }
 
     // Main content
     #main-content {
+        h2 {
+            margin-bottom: 30px;
+            font-size: 1.8em;
+        }
+
+        .search-favorite {
+            max-width: 50%;
+            padding-bottom: 2em;
+        }
+
         .detail-menu {
+            // background-color: rgb(192, 47, 47);
+
             .detail-card {
                 .detail-text {
                     padding-left: 30px;
                     padding-right: 30px;
                     margin-top: 4px;
                 }
+
                 .detail-image {
-                    width: 85%;
-                    height: 320px;
-                    margin: 0 auto;
+                    height: 350px;
+
+                    img {
+                        max-height: 100%;
+
+                    }
                 }
             }
-            .reviews{
-                max-width: 90%;
+
+            .reviews {
                 .row-review {
                     display: $display-flex;
                     flex-direction: row;
+
                     .column-label {
                         width: 30%;
                         margin-top: 6px;
                     }
+
                     .column-input {
                         width: 70%;
                         margin-top: 6px;
                     }
                 }
+
                 .submit {
                     #buttonAdd {
-                        width: 25%;
+                        min-width: 30%;
                         margin-left: auto;
                     }
                 }
@@ -107,36 +140,28 @@
         .container-cards {
             display: $display-flex;
             flex-flow: row wrap;
-            padding: 20px 3%;
+
             .cards {
-                width: 45%;
-                margin: 14px;
+                width: 50%;
+                padding: 1em 1em;
+
                 .item {
-                    padding-left: 18px;
-                    padding-right: 18px;
                     h3 {
-                        font-size: 1em;
-                        margin-bottom: 4px;
+                        font-size: 1.2em;
                     }
+
                     .description {
-                        font-size: 13px;
+                        font-size: 1em;
                     }
                 }
-            }
-            .city {
-                background-color: rgba(27, 48, 94, 0.67);
-                color: rgb(221, 218, 218);
-                font-weight: $fw500;
-                font-size: 0.8em;
-                width: 30%;
-                padding: 4px 4px 4px 12px;
-                margin-top: 6px;
-                position: $position-absolute;
-                border-radius: 0 1px 1px 0;
-                box-shadow: 0 1px 4px rgba(226, 226, 226, 0.596);
-            }
-            .alert {
-                width: 60%;
+
+                .card-header>.city {
+                    font-size: 1em;
+                }
+
+                .alert {
+                    width: 60%;
+                }
             }
         }
 
@@ -149,87 +174,100 @@
 @media (min-width: 1024px) {
     nav ul {
         width: 35%;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
 
     .jumbotron .title {
-        top: 16%;
-        width: 60%;
+        top: 14%;
+
         a {
-            width: 30%;
+            width: 25%;
         }
+
         h1 {
             font-size: 1.5em;
         }
     }
 
-    #main-content .container-cards .cards {
-        width: 30%;
-        h2 {
-            font-size: 1.5em;
+    #main-content .container-cards {
+        padding: 0 10%;
+
+        .alert.favorite {
+            margin-left: 15%;
+            margin-right: 15%;
         }
-        .item {
-            padding-left: 16px;
-            padding-right: 16px;
-            .rating {
-                font-size: 13px;
+
+        .cards {
+            width: 33.333333%;
+
+            .card-item {
+                h2 {
+                    font-size: 1.5em;
+                }
+
+                .item {
+                    padding: 20px;
+
+                    h3 {
+                        font-size: 1.3em;
+                    }
+
+                    .booked {
+                        font-size: 14px;
+                    }
+                }
+
+                .card-header>.city {
+                    font-size: 1em;
+                }
             }
-            h3 {
-                font-size: 1.12em;
-                margin-bottom: 4px;
-            }
-            .description {
-                font-size: 14px;
-            }
-            .booked {
-                font-size: 14px;
-            }
-        }
-        .city {
-            background-color: rgba(27, 48, 94, 0.67);
-            color: rgb(221, 218, 218);
-            font-weight: $fw500;
-            font-size: 0.8em;
         }
     }
 
     #main-content .detail-menu {
-        display: $display-flex;
-        flex-direction: $flex-direction;
-        // justify-content: center;
+        width: 60%;
+        margin: 20px auto;
+
+        .alert {
+            margin-top: 60px;
+        }
+
         .detail-card {
-            display: $display-flex;
-            flex-direction: row;
             .detail-image {
-                width: 45%;
-                height: 370px;
+                width: 100%;
+                height: 420px;
+
                 img {
-                    width: 100%;
-                    height: 100%;
+                    max-height: 100%;
                 }
             }
+
             .detail-text {
                 font-size: 1.1em;
-                padding: 10px 20px 5px 20px;
-                width: 55%;
             }
         }
-        .reviews{
-            max-width: 60%;
-            padding: 20px 20px 0px 20px;
-            .row-review {
+
+        .reviews {
+            padding: 50px;
+
+            margin .row-review.review-customer {
+
                 .column-label {
                     width: 25%;
                 }
+
                 .column-input {
                     width: 75%;
                 }
             }
+
             .submit #buttonAdd {
                 width: 15%;
             }
         }
     }
-  
+
+
 
 }
-
