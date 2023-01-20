@@ -1,78 +1,77 @@
+import '../components/DetailMenuComponent';
 import UrlParser from '../../routes/url-parser';
 import RestaurantSource from '../../data/restaurant-source';
-import LikeButtonInitiator from '../../utils/like-button-initiator';
+import LikeButtonPresenter from '../../utils/like-button-presenter';
+import FavoriteiRestoIdb from '../../data/favorite_iresto-idb';
 import {
-    createMenuDetailTemplate, createCustomerReviewsTemplate,
-    createCanNotAccessedTemplate, createIndicatorLoadingTemplate,
+  createMenuDetailTemplate, createCustomerReviewsTemplate,
+  createCanNotAccessedTemplate, createIndicatorLoadingTemplate,
 } from '../templates/template-creator';
 
 const Detail = {
-    async render() {
-        return `
-        <h2><i class="fa fa-list-alt fa-7x" aria-hidden="true"></i> Detail Menu</h2>
-        <div class="detail-menu" id="detail-menu"></div>
-        <div id="likeButtonContainer"></div>
-      `;
-    },
+  async render() {
+    return `<detail-menu></detail-menu>`;
+  },
 
-    async afterRender() {
-        const detailMenuContainer = document.querySelector('#detail-menu');
-        detailMenuContainer.innerHTML += createIndicatorLoadingTemplate();
+  async afterRender() {
+    document.querySelector('.jumbotron').style.display = 'none';
 
-        const url = UrlParser.parseActiveUrlWithoutCombiner();
-        const detailMenu = await RestaurantSource.detailMenu(url.id);
+    const detailMenuContainer = document.querySelector('#detail-menu');
+    detailMenuContainer.innerHTML = createIndicatorLoadingTemplate();
 
-        if (detailMenu instanceof Object) {
-            detailMenuContainer.innerHTML = '';
-            detailMenuContainer.innerHTML = createMenuDetailTemplate(detailMenu);
-            detailMenuContainer.innerHTML += createCustomerReviewsTemplate(detailMenu);
-        } else {
-            detailMenuContainer.innerHTML = createCanNotAccessedTemplate();
-        }
+    const url = UrlParser.parseActiveUrlWithoutCombiner();
+    const detailMenu = await RestaurantSource.detailMenu(url.id);
+    detailMenuContainer.innerHTML = '';
 
-        const buttonAddReview = document.querySelector('#buttonAdd');
-        const nameCustomer = document.querySelector('#name-customer');
-        const reviewCustomer = document.querySelector('#review-customer');
+    if (Object.keys(detailMenu).length > 0) {
+      detailMenuContainer.innerHTML = createMenuDetailTemplate(detailMenu);
+      detailMenuContainer.innerHTML += createCustomerReviewsTemplate(detailMenu);
+    } else {
+      detailMenuContainer.innerHTML += createCanNotAccessedTemplate();
+    }
 
-        buttonAddReview.addEventListener('click', async () => {
-            const dataReviewCustomer = {
-                id: detailMenu.id,
-                name: nameCustomer.value,
-                review: reviewCustomer.value,
-            }
-            const customerReviews = await RestaurantSource.reviewMenu(dataReviewCustomer);
+    const buttonAddReview = document.querySelector('#buttonAdd');
+    const nameCustomer = document.querySelector('#name-customer');
+    const reviewCustomer = document.querySelector('#review-customer');
 
-            if (customerReviews instanceof Object) {
-                detailMenuContainer.innerHTML = createMenuDetailTemplate(detailMenu);
-                detailMenuContainer.innerHTML += createCustomerReviewsTemplate(customerReviews);
-                nameCustomer.value = '';
-                reviewCustomer.value = '';
-            } else {
-                detailMenuContainer.innerHTML = '';
-                detailMenuContainer.innerHTML += createCanNotAccessedTemplate();
-            }
-        });
+    buttonAddReview.addEventListener('click', async () => {
+      const dataReviewCustomer = {
+        id: detailMenu.id,
+        name: nameCustomer.value,
+        review: reviewCustomer.value,
+      };
+      const customerReviews = await RestaurantSource.reviewMenu(dataReviewCustomer);
 
-        LikeButtonInitiator.init({
-            likeButtonContainer: document.querySelector('#likeButtonContainer'),
-            detailMenu: {
-                id: detailMenu.id,
-                pictureId: detailMenu.pictureId,
-                city: detailMenu.city,
-                rating: detailMenu.rating,
-                name: detailMenu.name,
-                description: detailMenu.description,
-                address: detailMenu.address,
-                categories: detailMenu.categories,
-                consumerReviews: detailMenu.consumerReviews,
-                menus: {
-                    drinks: detailMenu.menus.drinks,
-                    foods: detailMenu.menus.foods,
-                }
-            },
-        });
+      if (Object.keys(customerReviews).length > 0) {
+        detailMenuContainer.innerHTML = createMenuDetailTemplate(detailMenu);
+        detailMenuContainer.innerHTML += createCustomerReviewsTemplate(customerReviews);
+        nameCustomer.value = '';
+        reviewCustomer.value = '';
+      } else {
+        detailMenuContainer.innerHTML = createCanNotAccessedTemplate();
+      }
+    });
 
-    },
+    await LikeButtonPresenter.init({
+      likeButtonContainer: document.querySelector('#likeButtonContainer'),
+      FavoriteRestaurant: FavoriteiRestoIdb,
+      detailMenu: {
+        id: detailMenu.id,
+        pictureId: detailMenu.pictureId,
+        city: detailMenu.city,
+        rating: detailMenu.rating,
+        name: detailMenu.name,
+        description: detailMenu.description,
+        address: detailMenu.address,
+        categories: detailMenu.categories,
+        consumerReviews: detailMenu.consumerReviews,
+        menus: {
+          drinks: detailMenu.menus.drinks,
+          foods: detailMenu.menus.foods,
+        },
+      },
+    });
+  },
 };
 
 export default Detail;

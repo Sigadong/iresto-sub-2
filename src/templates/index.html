@@ -2,66 +2,37 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>iResto | Favorite Restaurant</title>
-    <meta name="description" content="available your favorite food and drink here" />
-    <meta name="theme-color" content="#010101" />
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32x32.png">
-    <link rel="icon" type="image/png" sizes="128x128" href="icons/icon-128x128.png">
-    <link rel="icon" type="image/png" sizes="152x152" href="icons/icon-152x152.png">
-    <link rel="apple-touch-icon" sizes="182x182" href="icons/icon-182x182.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192x192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512x512.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon.ico">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Poppins&display=swap">
-    <script src="https://use.fontawesome.com/b070c8f1df.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>iResto | Favorite Restaurant</title>
+  <meta name="description" content="available your favorite food and drink here" />
+  <meta name="theme-color" content="#010101" />
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/logo/apple-touch-icon.webp">
+  <link rel="icon" type="image/webp" sizes="192x192" href="icons/logo/android-chrome-192x192.webp">
+  <link rel="icon" type="image/webp" sizes="512x512" href="icons/logo/android-chrome-512x512.webp">
+  <link rel="apple-touch-icon" sizes="180x180" href="icons/logo/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/logo/android-chrome-192x192.png">
+  <link rel="icon" type="image/png" sizes="512x512" href="icons/logo/android-chrome-512x512.png">
+  <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Poppins:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <script src="https://use.fontawesome.com/b070c8f1df.js"></script>
 </head>
 
 <body id="body">
-    <a href="#main-content" class="skip-link" aria-label="goto_content">Go to content</a>
-    <!-- Header -->
-    <header>
-        <!-- Navigation Menu -->
-        <nav>
-            <button id="hamburger" aria-label="hamburger menu">☰</button>
-            <div class="logo">
-                <a href="#">iResto</a>
-            </div>
-            <ul>
-                <li><a href="#/list-menu" class="active" aria-label="link navigasi">List Menu</a></li>
-                <li><a href="#/like" aria-label="link navigasi">Favorite</a></li>
-                <li><a href="https://www.linkedin.com/in/irwanto-siregar/?locale=in_ID" rel="noopener" target="_blank"
-                        aria-label="link navigasi">About Us</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <!-- End header -->
 
-    <!-- Jumbotron -->
-    <div class="jumbotron">
-        <img src="./images/heros/hero-image_3.jpg" alt="">
-        <div class="title">
-            <h1>Enjoy our new menus and feel the pleasure only at our outlet</h1>
-            <p>Various kinds of food start from taste, type, and delicacy. Here we present local and international
-                flavors made from Indonesian tongues.</p>
-            <a href="#" aria-label="view menu restaurants">View Menus ❯</a>
-        </div>
-    </div>
-    <!-- End jumbotron -->
+  <header>
+    <goto-content></goto-content>
+    <nav-bar></nav-bar>
+  </header>
 
-    <!-- Main Content -->
-    <main id="main-content">
-    </main>
-    <!-- End main -->
+  <jumbotron-element></jumbotron-element>
 
-    <!-- Footer -->
-    <footer>
-        <p>Copyright &copy; 2020 - <span class="i-logo">iResto </span></p>
-    </footer>
-    <!-- End footer -->
+  <main id="main-content"></main>
+
+  <footer>
+    <footer-copyright></footer-copyright>
+  </footer>
 
 </body>
 

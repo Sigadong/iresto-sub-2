@@ -1,25 +1,23 @@
+import '../components/LikeMenuComponent';
 import FavoriteiRestoIdb from '../../data/favorite_iresto-idb';
-import { createListItemTemplate, createEmptyFavoriteTemplate } from '../templates/template-creator';
+import FavoriteMenuSearchView from './liked-menu-restaurant/favorite-menu-search-view';
+import FavoriteMenuShowPresenter from './liked-menu-restaurant/favorite-menu-show-presenter';
+import FavoriteMenuSearchPresenter from './liked-menu-restaurant/favorite-menu-search-presenter';
+
+const view = new FavoriteMenuSearchView();
 
 const Like = {
-    async render() {
-        return `
-        <h2><i class="fa fa-heart-o fa-lg" aria-hidden="true"></i> Favorite Menu</h2>
-        <div class="container-cards" id="card-restaurants"></div>
-      `;
-    },
+  async render() {
+    return view.getTemplate();
+  },
 
-    async afterRender() {
-        const favoriteItems = await FavoriteiRestoIdb.getAllRestaurant();
-        const favoriteItemContainer = document.querySelector('#card-restaurants');
-        if (favoriteItems < 1 || favoriteItems == null) {
-            favoriteItemContainer.innerHTML += createEmptyFavoriteTemplate();
-        } else {
-            favoriteItems.forEach((item) => {
-                favoriteItemContainer.innerHTML += createListItemTemplate(item);
-            });
-        }
-    },
+  async afterRender() {
+    document.querySelector('.jumbotron').style.display = 'block';
+
+    new FavoriteMenuShowPresenter({ view, favoriteMenus: FavoriteiRestoIdb });
+    new FavoriteMenuSearchPresenter({ view, favoriteMenus: FavoriteiRestoIdb });
+  },
+
 };
 
 export default Like;
